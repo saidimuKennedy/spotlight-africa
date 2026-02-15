@@ -55,6 +55,7 @@ func main() {
 		&models.Post{},
 		&models.PlatformInquiry{},
 		&models.News{},
+		&models.Blog{},
 	)
 	database.SeedData(db)
 
@@ -109,6 +110,9 @@ func main() {
 	newsRepo := &repository.NewsRepository{DB: db}
 	newsCtrl := &controller.NewsController{Repo: newsRepo}
 
+	blogRepo := &repository.BlogRepository{DB: db}
+	blogCtrl := &controller.BlogController{Repo: blogRepo}
+
 	// 5. Define Routes
 	
 	// --- PUBLIC ROUTES ---
@@ -129,6 +133,8 @@ func main() {
 	r.GET("/posts/:slug", postCtrl.GetPost)
 	r.GET("/news", newsCtrl.GetNews)
 	r.GET("/news/:slug", newsCtrl.GetNewsArticle)
+	r.GET("/blogs", blogCtrl.GetBlogs)
+	r.GET("/blogs/:slug", blogCtrl.GetBlog)
 	
 	//
 	userGroup := r.Group("/")
@@ -152,6 +158,9 @@ func main() {
 	{
 		adminRoutes.PUT("/businesses/:id", bizCtrl.UpdateBusiness)
 		adminRoutes.DELETE("/businesses/:id", bizCtrl.DeleteBusiness)
+		adminRoutes.POST("/blogs", blogCtrl.CreateBlog)
+		adminRoutes.PUT("/blogs/:slug", blogCtrl.UpdateBlog)
+		adminRoutes.DELETE("/blogs/:slug", blogCtrl.DeleteBlog)
 	}
 
 	// --- PRIVILEGED ROUTES ---

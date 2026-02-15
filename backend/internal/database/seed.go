@@ -225,6 +225,20 @@ func SeedData(db *gorm.DB) {
 		}
 	}
 
+	// Seed Blogs
+	var blogCount int64
+	db.Model(&models.Blog{}).Count(&blogCount)
+	if blogCount == 0 {
+		log.Println("🌱 Seeding blogs...")
+		blogs := []models.Blog{
+			{Title: "The Pulse of African Innovation", Slug: "pulse-of-african-innovation", Content: "Today, we witness a surge in digital infrastructure...", Author: "Editor in Chief", ImageURL: "https://picsum.photos/seed/pulse/800/400", PublishedAt: time.Now()},
+			{Title: "Strategic Growth in Emerging Markets", Slug: "strategic-growth-emerging-markets", Content: "Navigating the complexities of African markets requires...", Author: "Business Analyst", ImageURL: "https://picsum.photos/seed/growth/800/400", PublishedAt: time.Now().Add(-24 * time.Hour)},
+		}
+		for _, b := range blogs {
+			db.Create(&b)
+		}
+	}
+
 	log.Println("✅ Seed complete.")
 }
 

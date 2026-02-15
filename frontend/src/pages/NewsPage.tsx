@@ -40,8 +40,8 @@ const NewsPage = () => {
   return (
     <div className="min-h-screen bg-bg-primary text-white">
       {/* Hero Section */}
-      <section className="relative py-32 px-6 md:px-12 border-b border-white/5">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="relative py-32 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ const NewsPage = () => {
 
       {/* Category Filter */}
       <section className="sticky top-0 z-20 bg-bg-primary/95 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-6">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex gap-3 overflow-x-auto custom-scrollbar">
             {categories.map((cat) => (
               <button
@@ -82,8 +82,8 @@ const NewsPage = () => {
       </section>
 
       {/* News Grid */}
-      <section className="py-20 px-6 md:px-12">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
           {filteredNews.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-white/40 text-lg">

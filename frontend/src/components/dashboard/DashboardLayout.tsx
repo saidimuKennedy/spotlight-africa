@@ -21,6 +21,7 @@ import {
   Building2,
   Globe,
   ArrowLeft,
+  BookOpen,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { fetchDashboardMe, DashboardData } from "../../lib/api";
@@ -115,6 +116,15 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
       path: "/dashboard/business",
     },
   ];
+
+  // Add Admin-only items
+  if (data?.role === "admin" || data?.user?.role === "admin") {
+    menuItems.push({
+      icon: <BookOpen size={20} />,
+      label: "Blogs",
+      path: "/dashboard/blogs",
+    });
+  }
 
   return (
     <div className="flex h-screen bg-bg-primary text-white font-sans overflow-hidden">
@@ -220,9 +230,11 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = ({
                   {data?.user?.name || data?.user?.email || "Guest"}
                 </p>
                 <p className="text-xs text-white/40">
-                  {data?.business?.name
-                    ? `Owner @ ${data.business.name}`
-                    : "Private Member"}
+                  {data?.role === "admin"
+                    ? "Administrator"
+                    : data?.business?.name
+                      ? `Owner @ ${data.business.name}`
+                      : "Private Member"}
                 </p>
               </div>
               <div className="w-10 h-10 bg-accent-gold flex items-center justify-center font-bold text-bg-primary">

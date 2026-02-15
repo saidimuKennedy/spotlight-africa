@@ -328,6 +328,11 @@ const DashboardOverview = () => {
                 Moderate Businesses
               </li>
               <li className="text-[10px] font-bold text-white/40 uppercase hover:text-white cursor-pointer transition-colors pb-3 border-b border-white/5">
+                <Link to="/dashboard/blogs" className="block w-full">
+                  Manage Editorial Content
+                </Link>
+              </li>
+              <li className="text-[10px] font-bold text-white/40 uppercase hover:text-white cursor-pointer transition-colors pb-3 border-b border-white/5">
                 System Configuration
               </li>
             </ul>

@@ -414,3 +414,51 @@ export async function fetchPost(slug: string): Promise<BlogPost> {
   if (!response.ok) throw new Error("Failed to fetch post");
   return response.json();
 }
+export interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  image_url: string;
+  author: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchBlogs(): Promise<Blog[]> {
+  const response = await fetch(`${API_BASE_URL}/blogs`);
+  if (!response.ok) throw new Error("Failed to fetch blogs");
+  return response.json();
+}
+
+export async function fetchBlog(slug: string): Promise<Blog> {
+  const response = await fetch(`${API_BASE_URL}/blogs/${slug}`);
+  if (!response.ok) throw new Error("Failed to fetch blog");
+  return response.json();
+}
+
+export async function createBlog(data: Partial<Blog>): Promise<Blog> {
+  const response = await authFetch(`${API_BASE_URL}/blogs`, {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+export async function updateBlog(
+  slug: string,
+  data: Partial<Blog>,
+): Promise<Blog> {
+  const response = await authFetch(`${API_BASE_URL}/blogs/${slug}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+export async function deleteBlog(slug: string): Promise<void> {
+  await authFetch(`${API_BASE_URL}/blogs/${slug}`, {
+    method: "DELETE",
+  });
+}

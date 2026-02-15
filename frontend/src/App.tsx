@@ -44,6 +44,7 @@ import NewsPage from "./pages/NewsPage";
 import NewsArticlePage from "./pages/NewsArticlePage";
 import BusinessesPage from "./pages/BusinessesPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import BlogManagementPage from "./pages/dashboard/BlogManagementPage";
 
 /**
  * ProtectedRoute Component
@@ -188,6 +189,7 @@ function AppContent() {
                     <Route path="inquiries" element={<InquiriesPage />} />
                     <Route path="performance" element={<PerformancePage />} />
                     <Route path="business" element={<BusinessEditorPage />} />
+                    <Route path="blogs" element={<BlogManagementPage />} />
                     <Route path="settings" element={<SettingsPage />} />
                   </Routes>
                 </DashboardLayout>

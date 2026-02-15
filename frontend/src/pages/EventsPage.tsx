@@ -174,7 +174,7 @@ const EventSection = ({
 
   return (
     <div className="mb-24 last:mb-0">
-      <div className="max-w-[1400px] mx-auto px-6 mb-8 flex items-end justify-between">
+      <div className="max-w-7xl mx-auto px-6 mb-8 flex items-end justify-between">
         <h2 className="text-sm font-bold uppercase tracking-[0.4em] text-white/20">
           {title}
         </h2>
@@ -282,8 +282,8 @@ const EventsPage = () => {
   return (
     <div className="min-h-screen bg-bg-primary text-white overflow-x-hidden">
       {/* Editorial Header */}
-      <section className="pt-32 pb-24 px-6 md:px-12 border-b border-white/5">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="pt-32 pb-24 border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
